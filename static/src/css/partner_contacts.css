@@ -1,77 +1,243 @@
-/* ═══════════════════════════════════════════
-   Partner Contacts Organized - Styles
-   ═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════
+   Partner Contacts Organized - Enhanced Card Styles
+   ═══════════════════════════════════════════════════════ */
 
 /* ── Botones de acción ── */
 .o_partner_contacts_actions .btn {
     font-weight: 600;
-    padding: 7px 18px;
-    border-radius: 6px;
-    font-size: 0.875rem;
-    letter-spacing: 0.01em;
-}
-
-/* ── Encabezados de sección ── */
-.o_partner_section h4 {
-    font-size: 1rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-/* ── Border-bottom coloreado por sección ── */
-.o_partner_section_contact .border-bottom {
-    border-bottom-width: 2px !important;
-    border-color: #0d6efd !important;
-}
-.o_partner_section_delivery .border-bottom {
-    border-bottom-width: 2px !important;
-    border-color: #198754 !important;
-}
-.o_partner_section_invoice .border-bottom {
-    border-bottom-width: 2px !important;
-    border-color: #e67e00 !important;
-}
-
-/* ── Kanban grid ── */
-.o_partner_section .o_kanban_renderer {
-    gap: 10px;
-}
-
-/* ── Cards base ── */
-.o_partner_section .o_kanban_record {
+    padding: 8px 20px;
     border-radius: 8px;
-    border: 1px solid #e9ecef;
-    overflow: hidden;
-    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
 }
-.o_partner_section .o_kanban_record:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+.o_partner_contacts_actions .btn:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     transform: translateY(-1px);
 }
 
-/* ── Borde lateral por tipo ── */
+/* ── Encabezados de sección ── */
+.o_partner_section > div:first-child {
+    padding-bottom: 8px !important;
+    margin-bottom: 12px !important;
+}
+.o_partner_section h4 {
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* ── Border coloreado por sección ── */
+.o_partner_section_contact > div:first-child {
+    border-bottom: 2px solid #0d6efd !important;
+}
+.o_partner_section_delivery > div:first-child {
+    border-bottom: 2px solid #198754 !important;
+}
+.o_partner_section_invoice > div:first-child {
+    border-bottom: 2px solid #e67e00 !important;
+}
+
+/* ══════════════════════════════════════════
+   KANBAN CARDS - Layout & Sizing
+   ══════════════════════════════════════════ */
+
+/* Grid del kanban: cards uniformes */
+.o_partner_section .o_kanban_renderer {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+}
+
+/* Cada card: ancho fijo, vertical layout */
+.o_partner_section .o_kanban_record {
+    width: 220px !important;
+    min-height: 100px;
+    border-radius: 10px !important;
+    border: 1px solid #e2e6ea !important;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+.o_partner_section .o_kanban_record:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10) !important;
+    transform: translateY(-2px);
+    border-color: #ced4da !important;
+}
+
+/* ── Borde superior coloreado ── */
 .o_partner_section_contact .o_kanban_record {
-    border-left: 3px solid #0d6efd;
+    border-top: 3px solid #0d6efd !important;
 }
 .o_partner_section_delivery .o_kanban_record {
-    border-left: 3px solid #198754;
+    border-top: 3px solid #198754 !important;
 }
 .o_partner_section_invoice .o_kanban_record {
-    border-left: 3px solid #e67e00;
+    border-top: 3px solid #e67e00 !important;
+}
+.o_partner_section_other .o_kanban_record {
+    border-top: 3px solid #adb5bd !important;
 }
 
-/* ── Aside icons ── */
-.o_partner_section .o_kanban_aside_full > div {
-    border-radius: 0;
+/* ══════════════════════════════════════════
+   CARD INNER LAYOUT - Vertical
+   ══════════════════════════════════════════ */
+
+/* Forzar layout vertical */
+.o_partner_section .o_kanban_record .card.flex-row {
+    flex-direction: column !important;
 }
 
-/* ── Badge de contador ── */
-.o_partner_section .badge {
+/* ── Aside: banner superior horizontal ── */
+.o_partner_section .o_kanban_record .o_kanban_aside_full {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 56px !important;
+    min-height: 56px !important;
+    max-height: 56px !important;
+    overflow: hidden;
+}
+
+/* Contactos: avatar circular */
+.o_partner_section_contact .o_kanban_record .o_kanban_aside_full {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%) !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    max-height: 64px !important;
+}
+.o_partner_section_contact .o_kanban_record .o_kanban_aside_full img {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2px solid #fff !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Entrega: fondo verde */
+.o_partner_section_delivery .o_kanban_record .o_kanban_aside_full {
+    height: 48px !important;
+    min-height: 48px !important;
+    max-height: 48px !important;
+}
+.o_partner_section_delivery .o_kanban_record .o_kanban_aside_full > div {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, #d1e7dd 0%, #badbcc 100%) !important;
+    border-radius: 0 !important;
+}
+
+/* Factura: fondo ámbar */
+.o_partner_section_invoice .o_kanban_record .o_kanban_aside_full {
+    height: 48px !important;
+    min-height: 48px !important;
+    max-height: 48px !important;
+}
+.o_partner_section_invoice .o_kanban_record .o_kanban_aside_full > div {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe69c 100%) !important;
+    border-radius: 0 !important;
+}
+
+/* ── Main content ── */
+.o_partner_section .o_kanban_record main {
+    padding: 10px 12px 12px 12px !important;
+}
+
+/* Nombre */
+.o_partner_section .o_kanban_record main .fw-bold.fs-6,
+.o_partner_section .o_kanban_record main .fw-bold {
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    line-height: 1.3;
+    color: #212529;
+    margin-bottom: 4px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Filas de info */
+.o_partner_section .o_kanban_record main .small {
+    font-size: 0.78rem !important;
+    line-height: 1.5;
+    color: #495057;
+}
+.o_partner_section .o_kanban_record main .text-muted {
+    color: #6c757d !important;
+}
+
+/* Íconos */
+.o_partner_section .o_kanban_record main .fa {
     font-size: 0.75rem;
-    font-weight: 600;
+    width: 14px;
+    text-align: center;
 }
 
-/* ── Empty state ── */
+/* ══════════════════════════════════════════
+   BADGES
+   ══════════════════════════════════════════ */
+.o_partner_section .badge.rounded-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    min-width: 22px;
+}
+
+/* ══════════════════════════════════════════
+   EMPTY STATE
+   ══════════════════════════════════════════ */
 .o_partner_section .o_nocontent_help {
-    padding: 20px;
+    padding: 24px 16px;
+    text-align: center;
+    color: #868e96;
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* ══════════════════════════════════════════
+   "AGREGAR" LINK (kanban create button)
+   ══════════════════════════════════════════ */
+.o_partner_section .o_kanban_button_new,
+.o_partner_section .o-kanban-button-new {
+    width: 220px !important;
+    min-height: 100px;
+    border-radius: 10px !important;
+    border: 2px dashed #dee2e6 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 0.85rem;
+    background: #f8f9fa !important;
+    transition: all 0.2s ease;
+}
+.o_partner_section .o_kanban_button_new:hover,
+.o_partner_section .o-kanban-button-new:hover {
+    border-color: #adb5bd !important;
+    background: #e9ecef !important;
+    color: #495057;
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════ */
+@media (max-width: 768px) {
+    .o_partner_section .o_kanban_record {
+        width: 100% !important;
+    }
+    .o_partner_section .o_kanban_button_new,
+    .o_partner_section .o-kanban-button-new {
+        width: 100% !important;
+    }
 }
