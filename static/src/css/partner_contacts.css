@@ -1,52 +1,77 @@
-/* Partner Contacts Organized - Styles */
+/* ═══════════════════════════════════════════
+   Partner Contacts Organized - Styles
+   ═══════════════════════════════════════════ */
 
-/* Sección headers */
-.o_partner_section .o_partner_section_header h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-
-/* Botones de acción superiores */
+/* ── Botones de acción ── */
 .o_partner_contacts_actions .btn {
-    font-weight: 500;
-    padding: 8px 16px;
+    font-weight: 600;
+    padding: 7px 18px;
     border-radius: 6px;
+    font-size: 0.875rem;
+    letter-spacing: 0.01em;
 }
 
-/* Kanban cards dentro de las secciones */
+/* ── Encabezados de sección ── */
+.o_partner_section h4 {
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+/* ── Border-bottom coloreado por sección ── */
+.o_partner_section_contact .border-bottom {
+    border-bottom-width: 2px !important;
+    border-color: #0d6efd !important;
+}
+.o_partner_section_delivery .border-bottom {
+    border-bottom-width: 2px !important;
+    border-color: #198754 !important;
+}
+.o_partner_section_invoice .border-bottom {
+    border-bottom-width: 2px !important;
+    border-color: #e67e00 !important;
+}
+
+/* ── Kanban grid ── */
 .o_partner_section .o_kanban_renderer {
-    gap: 12px;
+    gap: 10px;
 }
 
+/* ── Cards base ── */
 .o_partner_section .o_kanban_record {
     border-radius: 8px;
-    border: 1px solid #dee2e6;
-    transition: box-shadow 0.15s ease;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
-
 .o_partner_section .o_kanban_record:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-1px);
 }
 
-/* Placeholder cuando no hay registros */
-.o_partner_section .o_kanban_renderer:empty::after,
-.o_partner_section .o_kanban_renderer .o_nocontent_help {
-    font-style: italic;
-    color: #868e96;
-}
-
-/* Sección de contactos - acentos azules */
-.o_partner_section:nth-child(2) .o_kanban_record {
+/* ── Borde lateral por tipo ── */
+.o_partner_section_contact .o_kanban_record {
     border-left: 3px solid #0d6efd;
 }
-
-/* Sección de entrega - acentos verdes */
-.o_partner_section:nth-child(3) .o_kanban_record {
+.o_partner_section_delivery .o_kanban_record {
     border-left: 3px solid #198754;
 }
+.o_partner_section_invoice .o_kanban_record {
+    border-left: 3px solid #e67e00;
+}
 
-/* Sección de factura - acentos naranjas */
-.o_partner_section:nth-child(4) .o_kanban_record {
-    border-left: 3px solid #ffc107;
+/* ── Aside icons ── */
+.o_partner_section .o_kanban_aside_full > div {
+    border-radius: 0;
+}
+
+/* ── Badge de contador ── */
+.o_partner_section .badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* ── Empty state ── */
+.o_partner_section .o_nocontent_help {
+    padding: 20px;
 }
