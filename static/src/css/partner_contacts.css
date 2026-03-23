@@ -61,23 +61,28 @@
 }
 
 /* ══════════════════════════════════════════
-   FIX: Aside cubre 100% del alto de la card
+   Ocultar ghost records (placeholders vacíos)
    ══════════════════════════════════════════ */
+.o_partner_section .o_kanban_ghost {
+    display: none !important;
+}
 
-/* La card (.card) es el flex container — asegurar stretch */
+/* ══════════════════════════════════════════
+   Aside: sin fondo, solo ícono centrado
+   ══════════════════════════════════════════ */
 .o_partner_section .o_kanban_record .card {
     align-items: stretch !important;
 }
 
-/* El aside completo: stretch + sin max-height */
 .o_partner_section .o_kanban_record .o_kanban_aside_full {
+    position: relative !important;
     align-self: stretch !important;
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
 }
 
-/* El div hijo dentro del aside (el del background-color): 100% alto absoluto */
+/* Quitar fondo del div contenedor del ícono */
 .o_partner_section .o_kanban_record .o_kanban_aside_full > div {
     position: absolute !important;
     top: 0 !important;
@@ -90,11 +95,8 @@
     align-items: center !important;
     justify-content: center !important;
     border-radius: 0 !important;
-}
-
-/* El aside necesita position relative para que el absolute hijo funcione */
-.o_partner_section .o_kanban_record .o_kanban_aside_full {
-    position: relative !important;
+    background: transparent !important;
+    background-color: transparent !important;
 }
 
 /* Avatar imagen en contactos */
