@@ -7,20 +7,20 @@ class ResPartner(models.Model):
 
     # ── Campos computed para separar por tipo ──
     contact_child_ids = fields.One2many(
-        'res.partner', 'parent_id', string='Contactos',
-        domain=[('type', '=', 'contact')],
+        'res.partner', compute='_compute_child_by_type',
+        string='Contactos',
     )
     delivery_child_ids = fields.One2many(
-        'res.partner', 'parent_id', string='Direcciones de Entrega',
-        domain=[('type', '=', 'delivery')],
+        'res.partner', compute='_compute_child_by_type',
+        string='Direcciones de Entrega',
     )
     invoice_child_ids = fields.One2many(
-        'res.partner', 'parent_id', string='Direcciones de Factura',
-        domain=[('type', '=', 'invoice')],
+        'res.partner', compute='_compute_child_by_type',
+        string='Direcciones de Factura',
     )
     other_child_ids = fields.One2many(
-        'res.partner', 'parent_id', string='Otras Direcciones',
-        domain=[('type', 'not in', ['contact', 'delivery', 'invoice'])],
+        'res.partner', compute='_compute_child_by_type',
+        string='Otras Direcciones',
     )
 
     # ── Contadores para badges ──
@@ -33,6 +33,16 @@ class ResPartner(models.Model):
     invoice_child_count = fields.Integer(
         compute='_compute_child_counts', string='# Facturas',
     )
+
+    @api.depends('child_ids', 'child_ids.type')
+    def _compute_child_by_type(self):
+        for partner in self:
+            partner.contact_child_ids = partner.child_ids.filtered(lambda c: c.type == 'contact')
+            partner.delivery_child_ids = partner.child_ids.filtered(lambda c: c.type == 'delivery')
+            partner.invoice_child_ids = partner.child_ids.filtered(lambda c: c.type == 'invoice')
+            partner.other_child_ids = partner.child_ids.filtered(
+                lambda c: c.type not in ('contact', 'delivery', 'invoice')
+            )
 
     @api.depends('child_ids', 'child_ids.type')
     def _compute_child_counts(self):
