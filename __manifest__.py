@@ -1,6 +1,6 @@
 {
     "name": "Partner Contacts Organized",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.1.0",
     "category": "Contacts",
     "summary": "Organiza contactos, direcciones de entrega y factura en secciones claras",
     "description": """
@@ -10,8 +10,17 @@
     """,
     "author": "Alphaqueb Consulting",
     "website": "https://alphaqueb.com",
-    "depends": ["base", "contacts"],
+    "depends": [
+        "base",
+        "contacts",
+        # ACL de lectura de addendas EDI para empleados: el campo
+        # l10n_mx_edi_addenda_ids vive en el form de contacto SIN gate de
+        # grupos y su modelo solo era legible por contabilidad — guardar un
+        # contacto tronaba con AccessError para todos los demas usuarios.
+        "l10n_mx_edi",
+    ],
     "data": [
+        "security/ir.model.access.csv",
         "views/res_partner_views.xml",
     ],
     "assets": {
